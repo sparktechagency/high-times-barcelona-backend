@@ -15,6 +15,10 @@ const blogSchema = new Schema<IBlog>(
                   type: String,
                   required: true,
             },
+            tags: {
+                  type: [String],
+                  required: true,
+            },
       },
       {
             timestamps: true,

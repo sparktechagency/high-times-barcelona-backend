@@ -28,7 +28,7 @@ const getSingleBlog = catchAsync(async (req, res) => {
 const createBlog = catchAsync(async (req, res) => {
       const blogData = req.body.data ? JSON.parse(req.body.data) : {};
       if (req.files && 'image' in req.files && req.files.image[0]) {
-            blogData.image = `/images/blogs/    ${req.files.image[0].filename}`;
+            blogData.image = `/images/blogs/${req.files.image[0].filename}`;
       }
 
       const result = await BlogService.createBlogToDB(blogData);
