@@ -5,6 +5,7 @@ import { FaqRoutes } from '../app/modules/faq/faq.route';
 import { BlogRoutes } from '../app/modules/blog/blog.route';
 import { SupportRoutes } from '../app/modules/support/support.route';
 import { TermsRoutes } from '../app/modules/terms/terms.route';
+import { PrivacyRoutes } from '../app/modules/privacy/privacy.route';
 
 const router = express.Router();
 
@@ -33,6 +34,10 @@ const apiRoutes = [
       {
             path: '/terms-and-conditions',
             route: TermsRoutes,
+      },
+      {
+            path: '/privacy-policy',
+            route: PrivacyRoutes,
       },
 ];
 
