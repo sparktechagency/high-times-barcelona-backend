@@ -20,27 +20,8 @@ const createSupport = catchAsync(async (req, res) => {
             data: result,
       });
 });
-const updateSupport = catchAsync(async (req, res) => {
-      const result = await SupportService.updateSupportToDB(req.params.id, req.body);
-      sendResponse(res, {
-            success: true,
-            statusCode: 200,
-            message: 'Support updated successfully',
-            data: result,
-      });
-});
-const deleteSupport = catchAsync(async (req, res) => {
-      const result = await SupportService.deleteSupportFromDB(req.params.id);
-      sendResponse(res, {
-            success: true,
-            statusCode: 200,
-            message: 'Support deleted successfully',
-            data: result,
-      });
-});
+
 export const SupportController = {
       createSupport,
       getAllSupport,
-      updateSupport,
-      deleteSupport,
 };
