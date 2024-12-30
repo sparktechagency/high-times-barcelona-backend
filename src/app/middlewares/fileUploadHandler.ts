@@ -15,7 +15,7 @@ const fileUploadHandler = () => {
       //folder create for different file
       const createDir = (dirPath: string) => {
             if (!fs.existsSync(dirPath)) {
-                  fs.mkdirSync(dirPath);
+                  fs.mkdirSync(dirPath, { recursive: true });
             }
       };
 
@@ -25,7 +25,7 @@ const fileUploadHandler = () => {
                   let uploadDir;
                   switch (file.fieldname) {
                         case 'image':
-                              uploadDir = path.join(baseUploadDir, 'images');
+                              uploadDir = path.join(baseUploadDir, 'images', 'blogs');
                               break;
                         case 'media':
                               uploadDir = path.join(baseUploadDir, 'medias');
