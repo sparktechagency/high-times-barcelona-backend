@@ -7,6 +7,7 @@ const router = Router();
 
 router.get('/', FaqController.getAllFaq);
 router.post('/create', validateRequest(FaqValidation.createFaqZodSchema), FaqController.createFaq);
-router.patch('/:id', validateRequest(FaqValidation.updateFaqZodSchema), FaqController.updateFaq);
+router.patch('/:id', FaqController.updateFaq);
+router.delete('/:id', FaqController.deleteFaq);
 
 export const FaqRoutes = router;

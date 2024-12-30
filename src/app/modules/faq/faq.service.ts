@@ -18,6 +18,17 @@ const createFaqToDB = async (faqData: IFaq) => {
 };
 const updateFaqToDB = async (id: string, faqData: IFaq) => {
       const result = await Faq.findOneAndUpdate({ _id: id }, faqData, { new: true });
+      if (!result) {
+            throw new Error('Faq not found');
+      }
+      return result;
+};
+
+const deleteFaqToDB = async (id: string) => {
+      const result = await Faq.findByIdAndDelete(id);
+      if (!result) {
+            throw new Error('Faq not found');
+      }
       return result;
 };
 
@@ -25,4 +36,5 @@ export const FaqService = {
       getAllFaqFromDB,
       createFaqToDB,
       updateFaqToDB,
+      deleteFaqToDB,
 };
