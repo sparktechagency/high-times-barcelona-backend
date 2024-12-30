@@ -4,6 +4,7 @@ import { UserRoutes } from '../app/modules/user/user.route';
 import { FaqRoutes } from '../app/modules/faq/faq.route';
 import { BlogRoutes } from '../app/modules/blog/blog.route';
 import { SupportRoutes } from '../app/modules/support/support.route';
+import { TermsRoutes } from '../app/modules/terms/terms.route';
 
 const router = express.Router();
 
@@ -27,6 +28,11 @@ const apiRoutes = [
       {
             path: '/supports',
             route: SupportRoutes,
+      },
+
+      {
+            path: '/terms-and-conditions',
+            route: TermsRoutes,
       },
 ];
 
