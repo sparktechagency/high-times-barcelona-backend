@@ -10,6 +10,7 @@ import { SubscriberRoutes } from '../app/modules/subscriber/subscriber.route';
 import { LinkRoutes } from '../app/modules/link/link.route';
 import { ContactRoutes } from '../app/modules/contact/contact.route';
 import { ClubRoutes } from '../app/modules/club/club.route';
+import { MemberRoutes } from '../app/modules/club-member/member.route';
 
 const router = express.Router();
 
@@ -25,6 +26,10 @@ const apiRoutes = [
       {
             path: '/clubs',
             route: ClubRoutes,
+      },
+      {
+            path: '/members',
+            route: MemberRoutes,
       },
       {
             path: '/faqs',
