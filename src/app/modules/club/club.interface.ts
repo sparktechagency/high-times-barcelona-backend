@@ -8,10 +8,11 @@ export type IClub = {
             longitude: number;
       };
       rating: number;
+      ageLimit: number;
       address: string;
       openingHour: string;
       closingHour: string;
       openDay: string;
-      isVerified: boolean;
+      isApproved: boolean;
       isOpen: boolean;
 };

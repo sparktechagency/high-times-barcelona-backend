@@ -18,6 +18,10 @@ const clubSchema = new Schema<IClub>({
             type: Number,
             required: true,
       },
+      ageLimit: {
+            type: Number,
+            required: true,
+      },
       location: {
             latitude: {
                   type: Number,
@@ -48,7 +52,7 @@ const clubSchema = new Schema<IClub>({
             type: String,
             required: true,
       },
-      isVerified: {
+      isApproved: {
             type: Boolean,
             default: false,
       },
