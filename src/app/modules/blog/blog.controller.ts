@@ -27,8 +27,8 @@ const getSingleBlog = catchAsync(async (req, res) => {
 });
 const createBlog = catchAsync(async (req, res) => {
       const blogData = req.body.data ? JSON.parse(req.body.data) : {};
-      if (req.files && 'image' in req.files && req.files.image[0]) {
-            blogData.image = `/images/blogs/${req.files.image[0].filename}`;
+      if (req.files && 'blogImage' in req.files && req.files.blogImage[0]) {
+            blogData.image = `/blogs/${req.files.blogImage[0].filename}`;
       }
 
       const result = await BlogService.createBlogToDB(blogData);
@@ -42,8 +42,8 @@ const createBlog = catchAsync(async (req, res) => {
 
 const updateBlog = catchAsync(async (req, res) => {
       const blogData = req.body.data ? JSON.parse(req.body.data) : {};
-      if (req.files && 'image' in req.files && req.files.image[0]) {
-            blogData.image = `/images/blogs/${req.files.image[0].filename}`;
+      if (req.files && 'blogImage' in req.files && req.files.blogImage[0]) {
+            blogData.image = `/blogs/${req.files.blogImage[0].filename}`;
       }
       const result = await BlogService.updateBlogToDB(req.params.id, blogData);
       sendResponse(res, {

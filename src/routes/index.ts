@@ -7,6 +7,7 @@ import { SupportRoutes } from '../app/modules/support/support.route';
 import { TermsRoutes } from '../app/modules/terms/terms.route';
 import { PrivacyRoutes } from '../app/modules/privacy/privacy.route';
 import { SubscriberRoutes } from '../app/modules/subscriber/subscriber.route';
+import { LinkRoutes } from '../app/modules/link/link.route';
 
 const router = express.Router();
 
@@ -43,6 +44,10 @@ const apiRoutes = [
       {
             path: '/subscribers',
             route: SubscriberRoutes,
+      },
+      {
+            path: '/social-links',
+            route: LinkRoutes,
       },
 ];
 

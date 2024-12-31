@@ -25,7 +25,13 @@ const fileUploadHandler = () => {
                   let uploadDir;
                   switch (file.fieldname) {
                         case 'image':
-                              uploadDir = path.join(baseUploadDir, 'images', 'blogs');
+                              uploadDir = path.join(baseUploadDir, 'images');
+                              break;
+                        case 'blogImage':
+                              uploadDir = path.join(baseUploadDir, 'blogs');
+                              break;
+                        case 'icon':
+                              uploadDir = path.join(baseUploadDir, 'icons');
                               break;
                         case 'media':
                               uploadDir = path.join(baseUploadDir, 'medias');
@@ -49,7 +55,7 @@ const fileUploadHandler = () => {
 
       //file filter
       const filterFilter = (req: Request, file: any, cb: FileFilterCallback) => {
-            if (file.fieldname === 'image') {
+            if (file.fieldname === 'image' || file.fieldname === 'blogImage' || file.fieldname === 'icon') {
                   if (
                         file.mimetype === 'image/jpeg' ||
                         file.mimetype === 'image/png' ||
@@ -81,6 +87,8 @@ const fileUploadHandler = () => {
             fileFilter: filterFilter,
       }).fields([
             { name: 'image', maxCount: 3 },
+            { name: 'blogImage', maxCount: 1 },
+            { name: 'icon', maxCount: 1 },
             { name: 'media', maxCount: 3 },
             { name: 'doc', maxCount: 3 },
       ]);
