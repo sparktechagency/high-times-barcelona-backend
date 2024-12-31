@@ -9,6 +9,7 @@ import { PrivacyRoutes } from '../app/modules/privacy/privacy.route';
 import { SubscriberRoutes } from '../app/modules/subscriber/subscriber.route';
 import { LinkRoutes } from '../app/modules/link/link.route';
 import { ContactRoutes } from '../app/modules/contact/contact.route';
+import { ClubRoutes } from '../app/modules/club/club.route';
 
 const router = express.Router();
 
@@ -20,6 +21,10 @@ const apiRoutes = [
       {
             path: '/auth',
             route: AuthRoutes,
+      },
+      {
+            path: '/clubs',
+            route: ClubRoutes,
       },
       {
             path: '/faqs',
