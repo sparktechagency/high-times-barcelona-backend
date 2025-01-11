@@ -34,6 +34,10 @@ class QueryBuilder<T> {
 
             excludeFields.forEach((el) => delete queryObj[el]);
 
+            if (queryObj.tag) {
+                  this.modelQuery = this.modelQuery.find({ tags: { $in: [queryObj.tag] } });
+                  delete queryObj.tag;
+            }
             this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
 
             return this;

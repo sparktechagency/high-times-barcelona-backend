@@ -5,6 +5,7 @@ import fileUploadHandler from '../../middlewares/fileUploadHandler';
 const router = Router();
 
 router.get('/', BlogController.getAllBlogs);
+router.get('/popular', BlogController.getPopularBlogs);
 router.get('/:id', BlogController.getSingleBlog);
 
 router.post('/create', fileUploadHandler(), BlogController.createBlog);

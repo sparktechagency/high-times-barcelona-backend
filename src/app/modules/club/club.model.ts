@@ -51,6 +51,7 @@ const clubSchema = new Schema<IClub>({
       openDay: {
             type: String,
             required: true,
+            default: 'sat-fri',
       },
       isApproved: {
             type: Boolean,

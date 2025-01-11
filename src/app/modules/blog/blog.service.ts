@@ -18,12 +18,22 @@ const getAllBlogsFromDB = async (query: Record<string, any>) => {
             meta,
       };
 };
+
+const getPopularBlogsFromDB = async () => {
+      const result = await Blog.find().sort({ views: -1 }).limit(5);
+      return result;
+};
+
 const getSingleBlogFromDB = async (id: string) => {
-      const result = await Blog.findById(id);
-      if (!result) {
+      const blog = await Blog.findById(id);
+      console.log(blog);
+      if (!blog) {
             throw new Error('Blog not found');
       }
-      return result;
+      blog.views = (blog.views || 0) + 1;
+      await blog.save();
+
+      return blog;
 };
 const createBlogToDB = async (blogData: IBlog) => {
       const result = await Blog.create(blogData);
@@ -53,4 +63,5 @@ export const BlogService = {
       getSingleBlogFromDB,
       deleteBlogFromDB,
       updateBlogToDB,
+      getPopularBlogsFromDB,
 };

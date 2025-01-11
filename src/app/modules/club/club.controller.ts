@@ -3,6 +3,7 @@ import sendResponse from '../../../shared/sendResponse';
 import { ClubService } from './club.service';
 
 const createClub = catchAsync(async (req, res) => {
+      console.log(req.files);
       const clubData = req.body.data ? JSON.parse(req.body.data) : {};
 
       if (req.files && 'clubImage' in req.files && req.files.clubImage[0]) {
@@ -48,7 +49,15 @@ const getAllApprovedClubs = catchAsync(async (req, res) => {
             data: result,
       });
 });
-
+const getSingleClub = catchAsync(async (req, res) => {
+      const result = await ClubService.getSingleClubFromDB(req.params.id);
+      sendResponse(res, {
+            success: true,
+            statusCode: 200,
+            message: 'Club retrieved successfully',
+            data: result,
+      });
+});
 const deleteClub = catchAsync(async (req, res) => {
       const result = await ClubService.deleteClubFromDB(req.params.id);
       sendResponse(res, {
@@ -64,4 +73,5 @@ export const ClubController = {
       getAllApprovedClubs,
       updateClub,
       deleteClub,
+      getSingleClub,
 };

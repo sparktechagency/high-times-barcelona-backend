@@ -25,6 +25,16 @@ const getSingleBlog = catchAsync(async (req, res) => {
             data: result,
       });
 });
+
+const getPopularBlogs = catchAsync(async (req, res) => {
+      const result = await BlogService.getPopularBlogsFromDB();
+      sendResponse(res, {
+            success: true,
+            statusCode: 200,
+            message: 'Popular Blogs retrieved successfully',
+            data: result,
+      });
+});
 const createBlog = catchAsync(async (req, res) => {
       const blogData = req.body.data ? JSON.parse(req.body.data) : {};
       if (req.files && 'blogImage' in req.files && req.files.blogImage[0]) {
@@ -69,4 +79,5 @@ export const BlogController = {
       getSingleBlog,
       deleteBlog,
       updateBlog,
+      getPopularBlogs,
 };

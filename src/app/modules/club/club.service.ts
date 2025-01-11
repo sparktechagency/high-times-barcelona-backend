@@ -28,6 +28,13 @@ const getAllApprovedClubs = async () => {
 
       return result;
 };
+const getSingleClubFromDB = async (id: string) => {
+      const result = await Club.findById(id);
+      if (!result) {
+            throw new Error('Club not found');
+      }
+      return result;
+};
 
 const deleteClubFromDB = async (id: string) => {
       const result = await Club.findByIdAndDelete(id);
@@ -43,4 +50,5 @@ export const ClubService = {
       getAllApprovedClubs,
       updateClubToDB,
       deleteClubFromDB,
+      getSingleClubFromDB,
 };

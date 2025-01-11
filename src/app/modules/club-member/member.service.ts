@@ -1,3 +1,4 @@
+import QueryBuilder from '../../../builder/QueryBuilder';
 import { IMember } from './member.interface';
 import { Member } from './member.model';
 
@@ -9,9 +10,23 @@ const createMemberToDB = async (memberData: IMember) => {
       return result;
 };
 
-const getAllMemberFromDB = async () => {
-      const result = await Member.find({}).populate('club');
-      return result;
+const getAllMemberFromDB = async (query: Record<string, any>) => {
+      const member = new QueryBuilder(Member.find(), query)
+            .search(['name', 'email'])
+            .filter()
+            .paginate()
+            .sort()
+            .fields()
+            .populateFields('club');
+
+      await member.executePopulate();
+      const result = await member.modelQuery;
+      const meta = await member.countTotal();
+
+      return {
+            result,
+            meta,
+      };
 };
 
 const deleteMemberFromDB = async (id: string) => {

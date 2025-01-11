@@ -3,4 +3,5 @@ export type IBlog = {
       description: string;
       image: string;
       tags: string[];
+      views: number;
 };

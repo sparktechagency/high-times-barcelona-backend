@@ -12,12 +12,15 @@ const createMember = catchAsync(async (req, res) => {
       });
 });
 const getAllMember = catchAsync(async (req, res) => {
-      const result = await MemberService.getAllMemberFromDB();
+      const { result, meta } = await MemberService.getAllMemberFromDB(req.query);
       sendResponse(res, {
             success: true,
             statusCode: 200,
             message: 'Members retrieved successfully',
-            data: result,
+            data: {
+                  result,
+                  meta,
+            },
       });
 });
 const deleteMember = catchAsync(async (req, res) => {

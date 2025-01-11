@@ -12,7 +12,12 @@ app.use(Morgan.successHandler);
 app.use(Morgan.errorHandler);
 
 //body parser
-app.use(cors());
+app.use(
+      cors({
+            origin: ['http://192.168.10.19:3001', 'http://localhost:3001'],
+            credentials: true,
+      }),
+);
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
