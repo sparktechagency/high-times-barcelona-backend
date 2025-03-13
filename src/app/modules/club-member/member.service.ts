@@ -18,10 +18,11 @@ const createMemberToDB = async (memberData: IMember) => {
   const userEmail = emailTemplate.memberShipRequestEmailTemplateForUser({
     name: memberData.name,
     email: memberData.email,
-    contact: memberData.contact,
+    address: club.address,
+    openDay: club.openDay,
+    openingHour: club.openingHour,
+    closingHour: club.closingHour,
     clubName: club.name,
-    fee: club.memberShipFee,
-    ageLimit: club.ageLimit,
   });
 
   const adminEmail = emailTemplate.memberShipRequestEmailTemplateForAdmin({

@@ -16,6 +16,7 @@ app.use(
   cors({
     origin: [
       "http://10.0.70.122:3001",
+      "http://10.0.70.122:3000",
       "http://localhost:3001",
       "https://apu.binarybards.online",
     ],
@@ -35,7 +36,7 @@ app.use("/api/v1", router);
 //live response
 app.get("/", (req: Request, res: Response) => {
   res.send(`
-            <div style="display:flex; justify-content:center; align-items:center; height:100vh;">
+               <div style="display:flex; justify-content:center; align-items:center; height:100vh;">
                   <div style="text-align:center;">
                         <h1 style="color:#A55FEF; font-family:Arial, Helvetica, sans-serif; font-size:3rem;">Welcome to my API</h1>
                         <p style="color:#777; font-size:1.5rem;">I'm happy to help you with anything you need.</p>
