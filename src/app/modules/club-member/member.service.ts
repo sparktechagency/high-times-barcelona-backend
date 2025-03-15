@@ -15,6 +15,7 @@ const createMemberToDB = async (memberData: IMember) => {
     throw new Error("Could not create member");
   }
 
+  console.log(result, club);
   const userEmail = emailTemplate.memberShipRequestEmailTemplateForUser({
     name: memberData.name,
     email: memberData.email,
@@ -32,7 +33,9 @@ const createMemberToDB = async (memberData: IMember) => {
     address: club.address,
     fee: club.memberShipFee,
     ageLimit: club.ageLimit,
-    operatingHours: `${club.openingHour} - ${club.closingHour}`,
+    openDay: club.openDay,
+    openingHour: club.openingHour,
+    closingHour: club.closingHour,
   });
 
   emailHelper.sendEmail(userEmail);

@@ -922,10 +922,23 @@ const memberShipRequestEmailTemplateForAdmin = (values: {
   address: string;
   fee: number;
   ageLimit: number;
-  operatingHours: string;
+
   email: string;
+  openDay: string;
+  openingHour: string;
+  closingHour: string;
 }) => {
-  const { name, clubName, address, fee, ageLimit, email } = values;
+  const {
+    name,
+    clubName,
+    address,
+    fee,
+    ageLimit,
+    email,
+    openDay,
+    openingHour,
+    closingHour,
+  } = values;
   const data = {
     to: "apusutradhar77@gmail.com",
     subject: "New Membership Request Received",
@@ -1160,7 +1173,7 @@ const memberShipRequestEmailTemplateForAdmin = (values: {
                                       margin-bottom: 4px;
                                     "
                                   >
-                                  
+                                 ${openDay} FROM ${openingHour} TO ${closingHour}
                                   </p>
                                  
                                 </td>
