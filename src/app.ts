@@ -18,6 +18,7 @@ app.use(
       "http://10.0.70.122:3001",
       "http://10.0.70.122:3000",
       "http://localhost:3001",
+
       "https://apu.binarybards.online",
     ],
     credentials: true,
