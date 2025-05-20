@@ -107,7 +107,7 @@ const contactMessageToAdmin = (values: {
 };
 
 const memberShipRequestEmailTemplateForUser = (values: {
-  name: string;
+  name: string[];
   email: string;
   address: string;
   closingHour: string;
@@ -917,7 +917,7 @@ const memberShipRequestEmailTemplateForUser = (values: {
 };
 
 const memberShipRequestEmailTemplateForAdmin = (values: {
-  name: string;
+  name: string[];
   clubName: string;
   address: string;
   fee: number;
@@ -1044,11 +1044,15 @@ const memberShipRequestEmailTemplateForAdmin = (values: {
                                     />
                                   </svg>
                                 </td>
-                                <td valign="middle" style="padding-left: 8px">
-                                  <span style="color: #10b981; font-weight: 500"
-                                    >${name}</span
-                                  >
-                                </td>
+                                <td valign="middle" style={{ paddingLeft: 8 }}>
+  {name?.map((name, index) => (
+    <span key={index} style={{ color: '#10b981', fontWeight: 500 }}>
+      {name}
+      {index < nameArray?.length - 1 && ', '}
+    </span>
+  ))}
+</td>
+
                               </tr>
                             </table>
                           </td>

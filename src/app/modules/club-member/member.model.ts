@@ -4,7 +4,7 @@ import { IMember } from './member.interface';
 const memberSchema = new Schema<IMember>(
       {
             name: {
-                  type: String,
+                  type: [String],
                   required: true,
             },
             email: {
