@@ -5,13 +5,14 @@ import { Club } from "../club/club.model";
 import { IMember } from "./member.interface";
 import { Member } from "./member.model";
 
-const createMemberToDB = async (memberData: IMember) => {
-  console.log(memberData)
+const createMemberToDB = async (memberData: IMember & {memberNames: []}) => {
+  const { memberNames, ...restData} = memberData;
+  restData.name = memberNames;
   const club = await Club.findById(memberData.club);
   if (!club) {
     throw new Error("Club not found");
   }
-  const result = await Member.create(memberData);
+  const result = await Member.create(restData);
   if (!result) {
     throw new Error("Could not create member");
   }
