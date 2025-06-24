@@ -6,6 +6,7 @@ import { IMember } from "./member.interface";
 import { Member } from "./member.model";
 
 const createMemberToDB = async (memberData: IMember) => {
+  console.log(memberData)
   const club = await Club.findById(memberData.club);
   if (!club) {
     throw new Error("Club not found");
