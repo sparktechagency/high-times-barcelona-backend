@@ -15,8 +15,7 @@ const createMemberToDB = async (memberData: IMember) => {
   if (!result) {
     throw new Error("Could not create member");
   }
-
-  console.log(result, club);
+  
   const userEmail = emailTemplate.memberShipRequestEmailTemplateForUser({
     name: memberData.name,
     email: memberData.email,
