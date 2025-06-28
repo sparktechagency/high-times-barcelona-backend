@@ -23,7 +23,7 @@ const updateClubToDB = async (id: string, clubData: IClub) => {
 const getAllClubsFromDB = async () => {
       const result = await Club.find({});
 
-      const clubs = await Promise.all((result?.map((club)=>{
+      const clubs = await Promise.all((result?.map((club:any)=>{
 
             const { isOpen, closingHour, ...otherInfo } = club;
 
@@ -43,7 +43,7 @@ const getAllClubsFromDB = async () => {
 
       })))
 
-      return result;
+      return clubs;
 };
 const getAllApprovedClubs = async () => {
       const result = await Club.find({ isApproved: true });
