@@ -3,7 +3,8 @@ import { IClub } from './club.interface';
 import { Club } from './club.model';
 
 const createClubToDB = async (clubData: IClub) => {
-      clubData.rating = generateRating();
+      const {rating, ...restClubData} = clubData;
+      restClubData.rating = Number(rating) || 0;
       const result = await Club.create(clubData);
       if (!result) {
             throw new Error('Could not create club');
@@ -21,6 +22,27 @@ const updateClubToDB = async (id: string, clubData: IClub) => {
 };
 const getAllClubsFromDB = async () => {
       const result = await Club.find({});
+
+      const clubs = await Promise.all((result?.map((club)=>{
+
+            const { isOpen, closingHour, ...otherInfo } = club;
+
+            // Get current time in HH:mm format
+            const now = new Date();
+            const currentHour = now.getHours().toString().padStart(2, '0');
+            const currentMinute = now.getMinutes().toString().padStart(2, '0');
+            const currentTime = `${currentHour}:${currentMinute}`;
+
+            const isValid = currentTime === closingHour ? 'Closed' : 'Open';
+
+            return {
+                  ...otherInfo,
+                  isOpen: isValid,
+                  closingHour
+            }
+
+      })))
+
       return result;
 };
 const getAllApprovedClubs = async () => {
