@@ -3,7 +3,7 @@ import { IClub } from './club.interface';
 import { Club } from './club.model';
 
 const createClubToDB = async (clubData: IClub) => {
-      const {rating, ...restClubData} = clubData;
+      const { rating, ...restClubData } = clubData;
       restClubData.rating = Number(rating) || 0;
       const result = await Club.create(clubData);
       if (!result) {
@@ -23,17 +23,22 @@ const updateClubToDB = async (id: string, clubData: IClub) => {
 const getAllClubsFromDB = async () => {
       const result = await Club.find({});
 
-      const clubs = await Promise.all((result?.map((club:any)=>{
+      const clubs = await Promise.all((result?.map((club: any) => {
 
             const { isOpen, closingHour, ...otherInfo } = club;
 
-            // Get current time in HH:mm format
+            // Current time in HH:mm
             const now = new Date();
-            const currentHour = now.getHours().toString().padStart(2, '0');
-            const currentMinute = now.getMinutes().toString().padStart(2, '0');
+            const currentHour = now.getHours()?.toString()?.padStart(2, '0');
+            const currentMinute = now.getMinutes()?.toString()?.padStart(2, '0');
             const currentTime = `${currentHour}:${currentMinute}`;
 
-            const isValid = currentTime === closingHour ? 'Closed' : 'Open';
+            // Normalize closingHour (e.g. 2:00 -> 02:00)
+            let [chHour, chMinute] = closingHour.split(':');
+            chHour = chHour.padStart(2, '0');
+            const normalizedClosingTime = `${chHour}:${chMinute}`;
+
+            const isValid = currentTime === normalizedClosingTime ? 'Closed' : 'Open';
 
             return {
                   ...otherInfo,
